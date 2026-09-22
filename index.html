@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MoneyFlow - Money Tracker</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="app">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="logo">Money<span>Flow</span></div>
+
+        <nav>
+          <button class="nav-btn active" data-page="dashboard">
+            <span>⌂</span> Dashboard
+          </button>
+
+          <button class="nav-btn" data-page="earning">
+            <span>↗</span> Earning
+          </button>
+
+          <button class="nav-btn" data-page="expense">
+            <span>↘</span> Expense
+          </button>
+
+          <button class="nav-btn" data-page="history">
+            <span>◷</span> History
+          </button>
+        </nav>
+
+        <div class="sidebar-bottom">
+          <p>Money Tracker</p>
+          <small>Track. Save. Grow.</small>
+        </div>
+      </aside>
+
+      <!-- Main -->
+      <main class="main">
+        <!-- Mobile Header -->
+        <header class="mobile-header">
+          <div class="logo">Money<span>Flow</span></div>
+
+          <button id="menuBtn">☰</button>
+        </header>
+
+        <!-- ================= DASHBOARD ================= -->
+        <section id="dashboard" class="page active">
+          <div class="page-header">
+            <div>
+              <p class="small-title">OVERVIEW</p>
+              <h1>Dashboard</h1>
+              <p>Keep track of your daily money.</p>
+            </div>
+
+            <div class="current-date" id="currentDate"></div>
+          </div>
+
+          <!-- Main Earning Card -->
+          <div class="earning-card">
+            <div>
+              <p>Total Earning</p>
+              <h2 id="dashboardEarning">₹0</h2>
+            </div>
+
+            <div class="target-info">
+              <p>Target</p>
+              <strong id="dashboardTarget">₹0</strong>
+            </div>
+
+            <div class="progress-container">
+              <div class="progress-bar">
+                <div id="targetProgress"></div>
+              </div>
+
+              <div class="progress-details">
+                <span id="progressPercent">0%</span>
+                <span id="targetRemaining">Set your target</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stats -->
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon green">↗</div>
+              <div>
+                <p>Today's Earning</p>
+                <h3 id="todayEarning">₹0</h3>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-icon red">↘</div>
+              <div>
+                <p>Today's Expense</p>
+                <h3 id="todayExpense">₹0</h3>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-icon red">₹</div>
+              <div>
+                <p>Total Expense</p>
+                <h3 id="totalExpense">₹0</h3>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-icon purple">#</div>
+              <div>
+                <p>Total Entries</p>
+                <h3 id="totalEntries">0</h3>
+              </div>
+            </div>
+          </div>
+
+          <!-- Target -->
+          <div class="section-card">
+            <div class="section-heading">
+              <div>
+                <h3>Earning Target</h3>
+                <p>Expense will not affect your target.</p>
+              </div>
+            </div>
+
+            <div class="target-form">
+              <input
+                type="number"
+                id="targetInput"
+                placeholder="Enter target amount"
+                min="0"
+              />
+
+              <button id="targetBtn" class="primary-btn">Update Target</button>
+            </div>
+          </div>
+
+          <!-- ================= DAILY REWARD ================= -->
+
+          <div class="reward-card">
+            <div class="reward-top">
+              <div>
+                <p class="small-title">DAILY REWARD</p>
+                <h3 id="rewardTitle">Start Your Day</h3>
+                <p id="rewardMessage">
+                  Add today's earning to unlock your reward.
+                </p>
+              </div>
+
+              <div class="reward-icon" id="rewardIcon">🎁</div>
+            </div>
+
+            <div class="streak-row">
+              <div>
+                <span>🔥 Streak</span>
+                <strong id="earningStreak">0 Days</strong>
+              </div>
+
+              <div>
+                <span>🏆 Best</span>
+                <strong id="bestStreak">0 Days</strong>
+              </div>
+            </div>
+
+            <div class="reward-progress">
+              <div class="reward-progress-bar">
+                <div id="rewardProgress"></div>
+              </div>
+
+              <span id="rewardProgressText"> 0 / 3 days </span>
+            </div>
+          </div>
+
+          <!-- Recent -->
+          <div class="section-card">
+            <div class="section-heading">
+              <div>
+                <h3>Recent Activity</h3>
+                <p>Your latest money entries</p>
+              </div>
+
+              <button class="text-btn" data-page-link="history">
+                View All
+              </button>
+            </div>
+
+            <div id="recentActivity"></div>
+          </div>
+        </section>
+
+        <!-- ================= EARNING ================= -->
+        <section id="earning" class="page">
+          <div class="page-header">
+            <div>
+              <p class="small-title">MONEY IN</p>
+              <h1>Earning</h1>
+              <p>Add your daily income here.</p>
+            </div>
+          </div>
+
+          <div class="big-money-card green-card">
+            <p>Total Earning</p>
+            <h2 id="earningTotal">₹0</h2>
+          </div>
+
+          <div class="section-card">
+            <div class="section-heading">
+              <div>
+                <h3>Add Earning</h3>
+                <p>Earning is completely separate from expenses.</p>
+              </div>
+            </div>
+
+            <form id="earningForm">
+              <div class="form-grid">
+                <div class="input-group">
+                  <label>Date</label>
+                  <input type="date" id="earningDate" required />
+                </div>
+
+                <div class="input-group">
+                  <label>Amount</label>
+                  <input
+                    type="number"
+                    id="earningAmount"
+                    placeholder="₹ Amount"
+                    min="1"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="input-group">
+                <label>Note</label>
+                <input
+                  type="text"
+                  id="earningNote"
+                  placeholder="Salary, freelance, commission..."
+                />
+              </div>
+
+              <button class="primary-btn full-btn">+ Add Earning</button>
+            </form>
+          </div>
+
+          <div class="section-card">
+            <div class="section-heading">
+              <div>
+                <h3>Earning History</h3>
+                <p>Date-wise earning records</p>
+              </div>
+            </div>
+
+            <div id="earningHistory"></div>
+          </div>
+        </section>
+
+        <!-- ================= EXPENSE ================= -->
+        <section id="expense" class="page">
+          <div class="page-header">
+            <div>
+              <p class="small-title">MONEY OUT</p>
+              <h1>Expense</h1>
+              <p>Track how much you spend every day.</p>
+            </div>
+          </div>
+
+          <div class="big-money-card red-card">
+            <p>Total Expense</p>
+            <h2 id="expenseTotal">₹0</h2>
+          </div>
+
+          <div class="section-card">
+            <div class="section-heading">
+              <div>
+                <h3>Add Daily Expense</h3>
+                <p>This is only for tracking your spending.</p>
+              </div>
+            </div>
+
+            <form id="expenseForm">
+              <div class="form-grid">
+                <div class="input-group">
+                  <label>Date</label>
+                  <input type="date" id="expenseDate" required />
+                </div>
+
+                <div class="input-group">
+                  <label>Amount</label>
+                  <input
+                    type="number"
+                    id="expenseAmount"
+                    placeholder="₹ Amount"
+                    min="1"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="input-group">
+                <label>Category</label>
+
+                <select id="expenseCategory">
+                  <option value="Cigarette">🚬Cigarette</option>
+                  <option value="Food">Food</option>
+                  <option value="Travel">Travel</option>
+                  <option value="Shopping">Shopping</option>
+                  <option value="Bills">Bills</option>
+                  <option value="Entertainment">Entertainment</option>
+                  <option value="Gym">Gym</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+
+              <div class="input-group">
+                <label>Note</label>
+
+                <input
+                  type="text"
+                  id="expenseNote"
+                  placeholder="Lunch, petrol, shopping..."
+                />
+              </div>
+
+              <button class="primary-btn full-btn">+ Add Expense</button>
+            </form>
+          </div>
+
+          <div class="section-card">
+            <div class="section-heading">
+              <div>
+                <h3>Expense History</h3>
+                <p>See how much you spend every day.</p>
+              </div>
+            </div>
+
+            <div id="expenseHistory"></div>
+          </div>
+        </section>
+
+        <!-- ================= HISTORY ================= -->
+        <section id="history" class="page">
+          <div class="page-header">
+            <div>
+              <p class="small-title">RECORDS</p>
+              <h1>History</h1>
+              <p>Your complete date-wise money history.</p>
+            </div>
+          </div>
+
+          <div class="history-filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+
+            <button class="filter-btn" data-filter="earning">Earning</button>
+
+            <button class="filter-btn" data-filter="expense">Expense</button>
+          </div>
+
+          <div id="fullHistory"></div>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
