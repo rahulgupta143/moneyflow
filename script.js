@@ -5,7 +5,7 @@
 
 /* ================= DATABASE ================= */
 
-const API_URL = "http://localhost:5000/api/money";
+const API_URL = "https://moneyflow-xhac.onrender.com/api/money";
 
 let data = {
   target: 0,
